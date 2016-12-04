@@ -289,6 +289,10 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
         assertEquals(5, called);
     }
 
+    /**
+     * Test that the Observer is notified when the threshold is defined in degrees
+     * Fahrenheit
+     */
     @Test
     public void testNotifyFahrenheit() {
         System.out.println("notifyFahrentheit");
@@ -313,6 +317,10 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
         assertEquals(1, called);
     }
     
+    /**
+     * Test that the Observer is only notified when the change in temperature
+     * is greater than the set delta value.
+     */
     @Test
     public void testOnlyNotifyIfLargerThanDelta() {
         System.out.println("onlyNotifyIfLargerThanDelta");
@@ -328,6 +336,33 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
 
         ThermometerObserver instance = new ThermometerObserver("onlyNotifyIfLargerThanDelta", 
                 0.0, TemperatureScale.CELSIUS, null, 0.75, false, this);
+        
+        t.addObserver(instance);
+        for (int ii = 0; ii < 11; ii++) {
+            t.getTemperature();
+        }
+
+        assertEquals(2, called);
+    }
+    
+    /**
+     * Test that the observer is notified when no trend value is specified.
+     */
+    @Test
+    public void testNoSpecificTrendNotification() {
+        System.out.println("noSpecificTrendNotification");
+        ThermometerImpl t = new ThermometerImpl( new TemperatureSource() {
+            private double[] temps = {1.5, 1.0, 0.5, 0.0, 1.0, -0.5, 0.0, -0.5, 0.0, 0.5, 0.0};
+            private int callCount = 0;
+            
+            @Override
+            public double getTemperature() {
+                return temps[callCount++];
+            }
+        });
+
+        ThermometerObserver instance = new ThermometerObserver("noSpecificTrendNotification", 
+                0.0, TemperatureScale.CELSIUS, 0.75, false, this);
         
         t.addObserver(instance);
         for (int ii = 0; ii < 11; ii++) {
