@@ -1,29 +1,33 @@
 package com.fincad.thermometer;
 
+import java.util.Observable;
+
 /**
  * Define the interface for a Thermometer.
  * 
  * @author Chris Baldwin
  */
-public interface Thermometer {
+public abstract class Thermometer extends Observable {
     
     /**
      * Get the current temperature of the thermometer using the default temperature
-     * scale (CELSIUS or FAHRENHEIT)
+     * scale 
+     * 
+     * @see com.fincad.thermometer.TemperatureScale
      * 
      * @return the temperature using the default scale 
      */
-    public double getTemperature();
+    public abstract double getTemperature();
     
     /**
      * Get the current temperature of the thermometer using the given temperature
-     * scale.
+     * scale and notify any registered Observers about the new value.
      * 
-     * @param scale the Scale to return the temperature in
+     * @param scale the TemperatureScale to return the temperature in
      * @return the temperature using the given scale
+     * 
+     * @see com.fincad.thermometer.TemperatureScale
      */
-    public double getTemperature(TemperatureScale scale);
-    
-    
-    
+    public abstract double getTemperature(TemperatureScale scale);
+
 }

@@ -1,13 +1,11 @@
 package com.fincad.thermometer;
 
-import java.util.Observable;
-
 /**
- * Implementation of the Thermometer Interface.
+ * Implementation of the Thermometer abstract class.
  * 
  * @author Chris Baldwin
  */
-public class ThermometerImpl extends Observable implements Thermometer {
+public class ThermometerImpl extends Thermometer {
     
     private static double SCALE_FACTOR = 1.8;
     
