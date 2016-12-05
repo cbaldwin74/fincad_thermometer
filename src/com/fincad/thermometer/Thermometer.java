@@ -11,7 +11,7 @@ public abstract class Thermometer extends Observable {
     
     /**
      * Get the current temperature of the thermometer using the default temperature
-     * scale 
+     * scale and notify any registered Observers about the new value.
      * 
      * @see com.fincad.thermometer.TemperatureScale
      * 

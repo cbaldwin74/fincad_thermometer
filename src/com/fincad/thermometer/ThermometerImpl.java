@@ -5,7 +5,7 @@ package com.fincad.thermometer;
  * 
  * @author Chris Baldwin
  */
-public class ThermometerImpl extends Thermometer {
+class ThermometerImpl extends Thermometer {
     
     private static double SCALE_FACTOR = 1.8;
     
