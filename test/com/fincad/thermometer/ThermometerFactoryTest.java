@@ -42,7 +42,7 @@ public class ThermometerFactoryTest {
      */
     @Test
     public void testCreateThermometerWithSource() {
-        System.out.println("createThermometer");
+        System.out.println("createThermometerWithSource");
         TemperatureSource source = new TemperatureSource() {
             private double[] temps = {1.5, 1.0, 0.5, 0.0, 1.0, -0.5, 0.0, -0.5, 0.0, 0.5, 0.0};
             private int callCount = 0;
@@ -62,7 +62,7 @@ public class ThermometerFactoryTest {
      */
     @Test
     public void testCreateThermometerWithSourceAndScale() {
-        System.out.println("createThermometer");
+        System.out.println("createThermometerWithSourceAndScale");
         TemperatureSource source = new TemperatureSource() {
             private double[] temps = {1.5, 1.0, 0.5, 0.0, 1.0, -0.5, 0.0, -0.5, 0.0, 0.5, 0.0};
             private int callCount = 0;

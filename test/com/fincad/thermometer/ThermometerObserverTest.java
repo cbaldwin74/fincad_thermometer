@@ -98,11 +98,11 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
     }
 
     /**
-     * Test for the Rising trend 
+     * Test for the Falling trend 
      */
     @Test
     public void testUpdateFalling() {
-        System.out.println("updateRising");
+        System.out.println("updateFalling");
         Observable o = new ThermometerImpl( new TemperatureSource() {
             private double[] temps = {0.0, 1.0};
             private int callCount = 0;
@@ -211,8 +211,8 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
      * Test that the observer only notifies once.
      */
     @Test
-    public void testNotifyOnlyOnceComplex() {
-        System.out.println("notifyOnlyOnceComplex");
+    public void testNotifyOnlyOnce() {
+        System.out.println("notifyOnlyOnce");
         ThermometerImpl t = new ThermometerImpl( new TemperatureSource() {
             private double[] temps = {1.5, 1.0, 0.5, 0.0, -0.5, 0.0, -0.5, 0.0, 0.5, 0.0};
             private int callCount = 0;
@@ -223,7 +223,7 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
             }
         });
 
-        ThermometerObserver instance = new ThermometerObserver("notifyOnlyOnceComplex", 
+        ThermometerObserver instance = new ThermometerObserver("notifyOnlyOnce", 
                 0.0, TemperatureScale.CELSIUS, null, true, this);
         
         t.addObserver(instance);
@@ -238,8 +238,8 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
      * Test that the observer notifies multiple times hitting the threshold exactly
      */
     @Test
-    public void testNotifyMultipleComplexOnThreshold() {
-        System.out.println("notifyMultipleComplexOnThreshold");
+    public void testNotifyMultipleOnThreshold() {
+        System.out.println("notifyMultipleOnThreshold");
         ThermometerImpl t = new ThermometerImpl( new TemperatureSource() {
             private double[] temps = {1.5, 1.0, 0.5, 0.0, -0.5, 0.0, -0.5, 0.0, 0.5, 0.0};
             private int callCount = 0;
@@ -250,7 +250,7 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
             }
         });
 
-        ThermometerObserver instance = new ThermometerObserver("updateOnlyOnceComplex", 
+        ThermometerObserver instance = new ThermometerObserver("notifyMultipleOnThreshold", 
                 0.0, TemperatureScale.CELSIUS, null, false, this);
         
         t.addObserver(instance);
@@ -266,8 +266,8 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
      * not equal the threshold value
      */
     @Test
-    public void testNotifyMultipleComplex() {
-        System.out.println("notifyMultipleComplex");
+    public void testNotifyMultipleOffThreshold() {
+        System.out.println("notifyMultipleOffThreshold");
         ThermometerImpl t = new ThermometerImpl( new TemperatureSource() {
             private double[] temps = {1.5, 1.0, 0.5, -0.25, -0.5, 0.25, -0.5, 0.25, 0.5, 0.0};
             private int callCount = 0;
@@ -278,7 +278,7 @@ public class ThermometerObserverTest implements ThermometerObserver.ThermometerO
             }
         });
 
-        ThermometerObserver instance = new ThermometerObserver("updateOnlyOnceComplex", 
+        ThermometerObserver instance = new ThermometerObserver("notifyMultipleOffThreshold", 
                 0.0, TemperatureScale.CELSIUS, null, false, this);
         
         t.addObserver(instance);
